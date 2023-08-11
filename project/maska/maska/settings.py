@@ -8,6 +8,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'flight_options',
     'home',
+    'CustomerService',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

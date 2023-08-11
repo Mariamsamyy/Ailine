@@ -19,5 +19,19 @@ class Flight(models.Model):
     LandingTime= models.FloatField(default=0)
     Price=models.IntegerField(default=0)
     def __str__(self):
-        return f"{self.id}: {self.origen} to {self.destination} Duration: {self.duration} Hours  Travile Date: {self.travile_time} Bording Time: {self.BordingTime}  Landing Time: {self.LandingTime} Price: {self.Price} EGP"
+        return f"{self.origen} to {self.destination} Duration: {self.duration} Hours  Travile Date: {self.travile_time} Bording Time: {self.BordingTime}  Landing Time: {self.LandingTime} Price: {self.Price} EGP"
 
+class RoundFlight(models.Model):
+    Roundorigen = models.ForeignKey(Airport,on_delete=models.CASCADE,related_name='RoundDepature')
+    Rounddestination = models.ForeignKey(Airport,on_delete=models.CASCADE,related_name='Roundto')
+    ReturnRoundorigen = models.ForeignKey(Airport,on_delete=models.CASCADE,related_name='RoundReturnDepature')
+    ReturnRounddestination = models.ForeignKey(Airport,on_delete=models.CASCADE,related_name='RoundReturnto')
+    Roundduration = models.FloatField(default=6.0)
+    Roundtravil_date = models.DateField(default=datetime.now)
+    RoundBordingTime= models.FloatField(default=0)
+    RoundLandingTime= models.FloatField(default=0)
+    ReturnRoundBordingTime= models.FloatField(default=0)
+    ReturnRoundLandingTime= models.FloatField(default=0)
+    RoundPrice=models.IntegerField(default=0)
+    # def __str__(self):
+    #     return f"{self.id}: {self.Roundorigen} to {self.Rounddestination} Duration: {self.duration} Hours  Travile Date: {self.travile_time} Bording Time: {self.BordingTime}  Landing Time: {self.LandingTime} Price: {self.Price} EGP"

@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.db.models import Q
 from home.models import Airport
 from home.models import Flight
+from home.models import RoundFlight
+
+
 
 # Create your views here.
 def options(request):
@@ -14,19 +17,15 @@ def options(request):
     return render(request,'CustomerServies/CustomerServies.html',{'Flights':flightFound})
 
 
-def Round_trip(request):
-      if request.method == 'POST':
-        fromData = request.POST.get("RoundFrom")
-        toData = request.POST.get("RoundTo")
-        TravilingDate=request.POST.get("RoundTravilingDate")
-        # DurationData=request.POST.get("RoundDuration")
-        # Passengersnum=request.POST.get("Passangers")
-        flightFound = Flight.objects.all().filter(
-        Q(origen=fromData, destination=toData, travile_time=TravilingDate) &
-        Q(origen=toData, destination=fromData))
-            
-      return render(request,'CustomerServies/CustomerServies.html',{'Flights':flightFound})
-        
-  
-      
-        
+def RoundTrip(request):
+    if request.method == 'POST':
+     Roundfrom=request.POST.get("RoundFrom")
+     Roundto=request.POST.get("RoundTo")
+     RoundReturnfrom=request.POST.get("RoundTo")
+     RoundReturnTo=request.POST.get("RoundFrom")
+     RoundDate=request.POST.get("RoundTravilingDate")
+     
+    flightFound = Flight.objects.all().filter(Roundorigen=Roundfrom, Rounddestination=Roundto,ReturnRoundorigen=RoundReturnfrom,ReturnRounddestination=RoundReturnTo,Roundtravil_date=RoundDate)
+    
+    return render(request,'CustomerServies/CustomerServies.html',{'Flights':flightFound})
+

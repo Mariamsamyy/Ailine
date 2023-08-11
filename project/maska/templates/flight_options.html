@@ -293,6 +293,73 @@
 
     </style>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addToCartButtons = document.querySelectorAll(".custom-flight-card button");
+            const cartItemContainer = document.querySelector(".cart-item");
+            const totalElement = document.querySelector(".total-price"); // Updated this line
+            const checkoutButton = document.querySelector(".footer button");
+        
+            let cartItems = [];
+            let total = 0;
+        
+            addToCartButtons.forEach((button, index) => {
+                button.addEventListener("click", () => {
+                    const flightCard = button.closest(".custom-flight-card");
+                    const flightDetails = flightCard.querySelector(".flight-card-details");
+                    const flightPrice = parseFloat(flightDetails.querySelector(".price-text").textContent.replace("Price: EGP ", ""));
+                    const flightID = flightDetails.querySelector("h6").textContent;
+        
+                    const newItem = {
+                        id: flightID,
+                        price: flightPrice,
+                    };
+        
+                    cartItems.push(newItem);
+                    total += flightPrice;
+                    updateCartUI();
+                });
+            });
+        
+            function updateCartUI() {
+                cartItemContainer.innerHTML = "";
+                cartItems.forEach((item) => {
+                    const cartItem = document.createElement("div");
+                    cartItem.className = "cart-item";
+                    cartItem.innerHTML = `
+                        <div class="flight-id">${item.id}</div>
+                        <div class="flight-price">EGP ${item.price.toFixed(2)}</div>
+                        <div class="remove-btn">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    `;
+                    cartItemContainer.appendChild(cartItem);
+                });
+        
+                totalElement.textContent = `EGP ${total.toFixed(2)}`;
+        
+                const removeButtons = document.querySelectorAll(".remove-btn");
+                removeButtons.forEach((removeButton, index) => {
+                    removeButton.addEventListener("click", () => {
+                        total -= cartItems[index].price;
+                        cartItems.splice(index, 1);
+                        updateCartUI();
+                    });
+                });
+        
+                checkoutButton.addEventListener("click", () => {
+                    if (cartItems.length > 0) {
+                        alert("Redirect to checkout page.");
+                    } else {
+                        alert("Your cart is empty. Add items before proceeding to checkout.");
+                    }
+                });
+            }
+        });
+        
+
+    </script>
+
 <body>
     <div class="banner">
         <h1 class="logo">Maska Airlines</h1>

@@ -1,15 +1,13 @@
 import os
 from pathlib import Path
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6zpy$-^4ef%bbk(gfg)=by#7d@)s0l#r-jw-4hm3i1@b(q+6a0'
 DEBUG = True
 ALLOWED_HOSTS = []
 # Application definition
 INSTALLED_APPS = [
-    'flight_options',
-    'home',
-    'CustomerService',
+    'CustomerServies',
+    'home.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,8 +91,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_ROOT='static'
-STATIC_URL = '/static/'
-STATICFILES_DIRS=[os.path.join('maska/static')] 
+STATIC_URL = 'static/'
+STATICFILES_DIRS=[os.path.join('maska/static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

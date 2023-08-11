@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/flight_options.css'%}">
+<html>
+<head>
+    <title>Cart</title>
+    {% comment %} <link rel="stylesheet" href= "newcart." {% endcomment %}
+    <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+    </head>
+    <script src="{% static 'flght_options.js' %}"></script> 
+
+<body>
+    <div class="banner">
+        <h1 class="logo">Maska Airlines</h1>
+        <div class="cart">
+            <i class="fa fa-fw fa-shopping-cart"></i>
+            <p id="cart-count">0</p>
+        </div>
+    </div>
+
+      <div class="main">
+        <div class="flight-containers">
+            <div class="custom-flight-card" >
+                <div class="flight-card-destination">
+                    <h4>Flight</h4>
+                    <h3>Cairo <i class="fas fa-plane airplane-icon"></i> Istanbul</h3>
+                </div>
+                <div class="flight-card-details">
+                    <h6>Flight ID: #A01</h6>
+                    <h3>Flight Details</h2>
+                    <ul>
+                        <li>Direct Flight</li>
+                        <li>Boarding time: 9AM</li>
+                        <li>Landing time: 2PM</li>
+                        <li>Trip duration: 5 hours</li>
+                    </ul>
+                    <div class="price-container">
+                    <p class="price-text">Price: EGP 8660</p>
+                    <button>Book flight</button>
+                </div>
+                    
+                </div>
+            </div>
+            <div class="custom-flight-card" >
+                <div class="flight-card-destination">
+                    <h4>Flight</h4>
+                    <h3>Cairo <i class="fas fa-plane airplane-icon"></i> Istanbul</h3>
+                </div>
+                <div class="flight-card-details">
+                    <h6>Flight ID: #A01</h6>
+                    <h3>Flight Details</h2>
+                    <ul>
+                        <li>Direct Flight</li>
+                        <li>Boarding time: 9AM</li>
+                        <li>Landing time: 2PM</li>
+                        <li>Trip duration: 5 hours</li>
+                    </ul>
+                    <div class="price-container">
+                    <p class="price-text">Price: EGP 11560</p>
+                    <button>Book flight</button>
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="flight-options">
+            <div class="side-bar">            
+           <h3 class="header">My Cart</h3>
+        <div class="cart-item" >
+            <div class="flight-id" ></div>
+            <div class="fligt-price" ></div>
+            <div class="remove-btn" ></div>
+
+        </div>
+           
+           <div class="footer">
+            <div class="total">
+                <h3>Total</h3>
+                <h3 class="total-price">EGP 0.00</h3>     
+                </div> 
+             <button>Checkout</button>
+           </div>
+           
+        </div>
+      </div>
+
+    <script src="newcart.js"></script>
+</body>
+</html>

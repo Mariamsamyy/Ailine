@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q
 # from home.models import Airport
 # from home.models import Flight
+def flight (request):
+       return render(request,'flight_options.html')
 
 # # Create your views here.
 # def options(request):

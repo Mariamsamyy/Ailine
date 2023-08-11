@@ -1,0 +1,30 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="stylesheet" href="rating.css" >
+  <title>Rating</title>
+  
+<body>
+  <main>
+
+    <img src="icon-star.svg" alt="star" class="ratingState">
+    <h1 class="ratingState">How did we do?</h1>
+    <p class="ratingState">Please let us know how we did with your support request. All feedback is appreciated 
+      to help us improve our offering!</p>
+        <form method="POST" action="{% url 'submit_rating' %}">
+            {% csrf_token %}
+            <label for="rating_value">Rate: </label>
+            <input type="number" name="rating_value" min="1" max="5" required><br>
+            <button type="submit">Submit Rating</button>
+        </form>
+    <img src="illustration-thank-you.svg" alt="thanksIllustration" class="thankYouState">
+    <h1 class="thankYouState">Thank you!</h1>
+    <p class="thankYouState">We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!</p>
+  </main>
+  <script type="text/javascript" src="rating.js"></script>
+</body>
+</html>

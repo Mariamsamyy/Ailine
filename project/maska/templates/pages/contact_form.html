@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact-us.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+    
+  <div class="container">
+    <div class="content">
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">New cairo</div>
+          <div class="text-two"> Egypt</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">+19997</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">MASKA@gmail.com</div>
+         
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Send us a message</div>
+        <p>let us know if you need anything, we always listen.</p>
+        <form method="POST" action="{% url 'save_comment' %}">
+            {% csrf_token %}
+            <label for="name">Your Name: </label>
+            <input type="text" name="name" required><br>
+            <label for="comment">Your Comment: </label>
+            <textarea name="comment" rows="4" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
+
+

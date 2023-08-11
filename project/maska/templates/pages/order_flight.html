@@ -1,0 +1,6 @@
+<!-- templates/order_flight.html -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Order Flight</button>
+</form>

@@ -8,7 +8,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'CustomerServies',
-    'home.apps.PagesConfig',
 
     'flight_options',
     'home',
@@ -62,6 +61,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 
 # Password validation

@@ -1,5 +1,4 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,20 +10,77 @@
 <body>
   <main>
 
-    <img src="icon-star.svg" alt="star" class="ratingState">
-    <h1 class="ratingState">How did we do?</h1>
-    <p class="ratingState">Please let us know how we did with your support request. All feedback is appreciated 
-      to help us improve our offering!</p>
+    <!-- <img src="icon-star.svg" alt="star" class="ratingState"> -->
+    <h1 class="ratingState">Thank you for choosing us</h1>
+    <h3 class="ratingState">Please rate your shopping experience. All feedback is appreciated to help us improve our offering!</h3>
         <form method="POST" action="{% url 'submit_rating' %}">
             {% csrf_token %}
+            <p>please rate your experience out of 5</p>
             <label for="rating_value">Rate: </label>
             <input type="number" name="rating_value" min="1" max="5" required><br>
             <button type="submit">Submit Rating</button>
         </form>
-    <img src="illustration-thank-you.svg" alt="thanksIllustration" class="thankYouState">
-    <h1 class="thankYouState">Thank you!</h1>
-    <p class="thankYouState">We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!</p>
   </main>
   <script type="text/javascript" src="rating.js"></script>
 </body>
+
+<style>
+ /* rating.css */
+/* Reset some default styles */
+body, h1, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #081D45; /* Set the background color */
+    color:black; /* Set text color to white */
+    line-height: 1.6;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure the box covers the entire viewport */
+}
+
+main {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+img.ratingState {
+    margin-top: 20px;
+}
+
+.ratingState {
+    margin-top: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+/* Styling the submit button */
+form button[type="submit"] {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+  
+}
+
+
+</style>
 </html>

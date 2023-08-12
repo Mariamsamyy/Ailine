@@ -1,324 +1,93 @@
+{%load static%}
+<link rel="stylesheet" href={%static "CustomerServies.css"%}>
 <!DOCTYPE html>
+
 <html>
-<head>
-    <title>Cart</title>
-    <link rel="stylesheet" href="newcart.css">
-    <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
- <style>@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        font-family: 'Muli', sans-serif;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        min-height: 100vh;
-        background-image: linear-gradient(45deg, #f2f2f2, #ffffff);
-    }
-    
-    .banner {
-        width: 100%;
-        background-color: rgb(10, 37, 88);
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-    }
-    
-    .banner .logo {
-        font-size: 24px;
-    }
-    
-    .banner .cart {
-        display: flex;
-        align-items: center;
-    }
-    
-    .banner .cart i {
-        font-size: 24px;
-        margin-right: 10px;
-    }
-    
-    .banner .cart p {
-        font-size: 18px;
-        margin: 0;
-    }
-    
-    .cart {
-        display: flex;
-        background-color: white;
-        justify-content: space-between;
-        align-items: center;
-        padding: 7px 10px;
-        border-radius: 3px;
-        width: 80px;
-    }
-    
-    .cart p {
-        height: 22px;
-        width: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 22px;
-        background-color: #0A2558;
-        color: white;
-    }
-    
-    .main {
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-        width: 100%;
-        padding: 32px;
-        gap: 16px;
-    }
-    
-    .flight-containers {
-        width: 70%;
-        height: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 16px;
-        gap: 16px;
-    }
-    
-    .custom-flight-card {
-        display: flex;
-        border-radius: 8px;
-        max-width: 380px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .flight-card-destination {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 25%;
-        background-color: rgb(10, 37, 88);
-        color: white;
-        font-weight: bold;
-        padding-left: 8px;
-        border-radius: 4px;
-    }
-    
-    .flight-card-destination h4 {
-        color: rgb(228, 224, 224);
-    }
-    
-    .flight-card-details {
-        width: 75%;
-        padding: 8px 16px 32px;
-        border-radius: 4px;
-        background-color: white;
-    }
-    
-    .price-container {
-        display: flex;
-        gap: 8px;
-    }
-    
-    .price-container button {
-        background-color: rgb(10, 37, 88);
-        border: 0;
-        border-radius: 50px;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-        color: #fff;
-        font-size: 16px;
-        padding: 8px 16px;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    
-    .price-container button:hover {
-        background-color: green;
-    }
-    
-    .side-bar {
-        width: 30%;
-        height: 100%;
-        display: flex;
-        right : 20px ;
-        flex-direction: column;
-        min-width: 200px;
-        padding: 8px;
-        justify-content: space-between;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .side-bar .header {
-        display: flex;
-        justify-content: center;
-        background: rgb(10, 37, 88);
-        border-radius: 4px;
-        color: white;
-        padding: 8px;
-    }
-    
-    .side-bar .total {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .side-bar button {
-        font-size: 16px;
-        width: 100%;
-        padding: 5px 0;
-        background: rgb(10, 37, 88);
-        color: white;
-        border-radius: 16px;
-    }
-    
-    .head {
-        background-color: #0A2558;
-        border-radius: 3px;
-        height: 40px;
-        padding: 10px;
-        margin-bottom: 20px;
-        color: white;
-        display: flex;
-        align-items: center;
-    }
-    
-    .foot {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 0px;
-        padding: 10px 0px;
-        border-top: 1px solid #333;
-    }
-    
-    * {
-        box-sizing: border-box;
-    }
-    
-    .flight-container {
-        width: 300px;
-        padding: 20px;
-        position: relative;
-    }
-    
-    .flight {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        max-width: 90%;
-        margin: 20px;
-        overflow: hidden;
-        width: 700px;
-    }
-    
-    .flight h6 {
-        opacity: 0.6;
-        margin: 0;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-    
-    .flight h2 {
-        letter-spacing: 1px;
-        margin: 10px 0;
-    }
-    
-    .flight-preview {
-        background-color: rgb(10, 37, 88);
-        color: #fff;
-        padding: 20px;
-        max-width: 230px;
-    }
-    
-    .flight-preview a {
-        color: #fff;
-        display: inline-block;
-        font-size: 12px;
-        opacity: 0.6;
-        margin-top: 20px;
-        text-decoration: none;
-    }
-    
-    .flight-preview i {
-        margin: 0 4px;
-        font-size: 18px;
-    }
-    
-    .flight-info {
-        padding: 30px;
-        position: relative;
-        width: 100%;
-    }
-    
-    .price-text {
-        font-size: 15px;
-        font-weight: bold;
-    }
-</style>
-
-</head>
-
-<body>
-    <div class="banner">
-        <h1 class="logo">Maska Airlines</h1>
-        <div class="cart">
-            <i class="fa fa-fw fa-shopping-cart"></i>
-            <p id="cart-count">0</p>
+    <head>
+       
+        <title>Cart</title>
+        <link rel="stylesheet" href="newcart.css">
+        <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="header">
+            <p class="logo">Maska</p>
+            <div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div>
         </div>
-    </div>
-      <div class="main">
-   
-        <div class="flight-containers">  
-               {%for f in Flights%}
-            <div class="custom-flight-card" style = "border : 2px solid black ;" >
-                <div class="flight-card-destination">
-                    <h4>Flight</h4>
-                    <h3>{{f.origen}}  <i class="fas fa-plane airplane-icon"></i>{{f.destination}}/</h3>
-                </div>
-                <div class="flight-card-details">
-                    <h6>Flight ID: #A01</h6>
-                    <h3>Flight Details</h2>
-                    <ul>
-                        <li>Direct Flight</li>
-                        <li>Boarding time: 9AM</li>
-                        <li>Landing time: 2PM</li>
-                        <li>Trip duration: 5 hours</li>
-                    </ul>
-                    <div class="price-container">
-                    <p class="price-text">Price: EGP 8660</p>
-                    <button>Book flight</button>
-                </div>
-                    
-                </div>
-                {%endfor%}
 
+        <div class="cart-container">
+            <div id="root"></div>
+            <div class="sidebar">
+                <div class="card.container"><p>My Cart</p></div>
+                <div id="cartItem">Your cart is empty</div>
+                <div class="foot">
+                    <h3>Total</h3>
+                    <h2 id="total">EGP 0.00</h2>
+                </div>
+                <button style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
+        onmouseover="this.style.backgroundColor='green';" 
+        onmouseout="this.style.backgroundColor='#0A2558';">Checkout</button>
             </div>
-        <div class="flight-options">
-            <div class="side-bar">            
-           <h3 class="header">My Cart</h3>
-        <div class="cart-item" >
-            <div class="flight-id" ></div>
-            <div class="fligt-price" ></div>
-            <div class="remove-btn" ></div>
-
         </div>
-           
-           <div class="footer">
-            <div class="total">
-                <h3>Total</h3>
-                <h3 class="total-price">EGP 0.00</h3>     
-                </div> 
-             <button>Checkout</button>
-           </div>
-           
+        {%for f in Flights%}
+    
+        <div class="root">
+            <div class="flight">
+                <div class="flight-preview">
+                    <h6>Flight</h6>
+                    <h2>{{f.origen}} <i class="fas fa-plane airplane-icon"></i>{{f.destination}}</h2>
+                </div>
+                                      
+                <div class="flight-info">
+                    <h6>Flight ID: {{f.id}}</h6>
+                    <h2>Flight Details</h2>
+                    <ul>
+                        <li>Flight Duration: {{f.duration}}HRS</li>
+                        <li>BordingTime: {{f.BordingTime}}</li>
+                        <li>Landing Time: {{f.LandingTime}}</li>
+                        <li>Traviling Date: {{f.travile_time}}</li>
+                    </ul>
+                    <button class="btn">Book flight</button>
+                    <p class="price-text">Price: {{f.Price}} EGP </p>
+                </div>
+            </div>
         </div>
-      </div>
+        {% empty %}
+        <h1 class="ops" >The is no One Way Flights on this date </h1>
+            {%endfor%} 
+                {% comment %} ROUNDFlights {% endcomment %}
+               
+                {%for z in ROUNDFlights%}
+                <div class="root">
+                    <div class="flight">
+                        <div class="flight-preview">
+                            <h6>Flight</h6>
+                            <h2>{{z.Roundorigen}} <i class="fas fa-plane airplane-icon"></i>{{z.Rounddestination}}</h2>
+                        </div>
+                                              
+                        <div class="flight-info">
+                            <h6>Flight ID: {{z.id}}</h6>
+                            <h3>Flight Details</h2>
+                            <ul>
+                                <li>Travil Date : {{z.Roundtravil_date}}</li>
+                                <li>Return Date : Aug. 20/8/2023 </li>
+                                <li>Boarding time:{{z.RoundBordingTime}}</li>
+                                <li>Landing time: {{z.RoundLandingTime}}</li>
+                                <li>Trip duration: {{z.Roundduration}} hours</li>
+                                <li>Return Boarding time:{{z.ReturnRoundBordingTime}}</li>
+                                <li>Return Landing time: {{z.ReturnRoundLandingTime}}</li>
+                                <li>Return Trip duration: {{z.Roundduration}} hours</li>
+                            </ul>
+                            <div class="price-container">
+                            <p class="price-text">Price:{{z.RoundPrice}} EGP </p>
+                            <button class="btn">Book flight</button>
+                        </div>
+                    </div>
+                </div>
+                    {% empty %}
+                    <h1 class="ops" >The is no Round Flights on this date </h1>
+                    {%endfor%} 
 
-    <script src="newcart.js"></script>
+   
 </body>
 </html>

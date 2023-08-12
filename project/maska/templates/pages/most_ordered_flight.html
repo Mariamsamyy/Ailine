@@ -1,0 +1,8 @@
+<!-- templates/most_ordered_flight.html -->
+<h1>Most Ordered Flight:</h1>
+{% if most_ordered_flight %}
+    <p>Flight Number: {{ most_ordered_flight.flight_number }}</p>
+    <p>Order Count: {{ most_ordered_flight.count }}</p>
+{% else %}
+    <p>No flight orders yet.</p>
+{% endif %}

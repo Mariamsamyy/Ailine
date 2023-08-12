@@ -6,8 +6,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # Application definition
 INSTALLED_APPS = [
+
     'CustomerServies',
     'home.apps.PagesConfig',
+
+    'flight_options',
+    'home',
+    'registeration',
+    'pages',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

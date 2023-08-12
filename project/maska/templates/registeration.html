@@ -412,7 +412,7 @@
               <h3>Welcome back ...</h3>
               <header>Log in</header>
             </div>
-            <form name="loginForm" id="loginForm" onsubmit="validateLogin(event)" method="post" >
+            <form name="loginForm" id="loginForm"  method="post" action="/registeration/login/post/">
               {% csrf_token %}
               <div class="input-box">
                 <input type="email" class="input-field" placeholder="Email" name="emaill" />
@@ -426,13 +426,16 @@
                   <a href="forgot.html">Forgot password?</a>
                 </div>
               </div>
+              {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>
+              {% endif %}
               <div class="input-box">
                 <input type="submit" class="submit" value="Log in" />
                 <button>Log in</button>
               </div>
             </form>
           </div>
-          <form name="myform" id="form" onsubmit="validations(event)" method="POST" action="/registeration/signup/post">
+          <form name="myform" id="form" onsubmit="validations(event)" method="POST" action="/registeration/signup/post/">
             {% csrf_token %}
             <!-- register -->
             <div class="register-container" id="register">
@@ -495,6 +498,41 @@
       </div>
 
       <script>
+        {% comment %} document.getElementById("loginForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+        
+          const email = document.querySelector("#loginForm [name='emaill']").value;
+          const password = document.querySelector("#loginForm [name='passwordd']").value;
+        
+          const response = await fetch("http://127.0.0.1:8000/registeration/login/post", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": csrfToken,
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          });
+        
+          if (response.ok) {
+            const responseData = await response.json();
+            if (responseData.success) {
+              // Successful login
+              window.location.href = "/home/home/"; // Redirect to home page
+            } else {
+              // Unsuccessful login, display error message
+              const errorMessage = responseData.message;
+              document.querySelector(".error-message").textContent = errorMessage;
+            }
+          } else {
+            // Handle non-OK response status here
+            console.error("Login request failed with status:", response.status);
+          }
+        });
+         {% endcomment %}
+
          var a = document.getElementById("loginBtn");
 var b = document.getElementById("registerBtn");
 var x = document.getElementById("login");
@@ -517,105 +555,105 @@ function register() {
   x.style.opacity = 0;
   y.style.opacity = 1;
 }
-      const csrfToken = document.querySelector(
-        "[name=csrfmiddlewaretoken]"
-      ).value;
+const csrfToken = document.querySelector(
+  "[name=csrfmiddlewaretoken]"
+).value;
 
-      function showError(msg) {
-        let error = document.getElementById("error");
-        error.style.display = "block";
-        error.innerHTML = msg;
-      }
+function showError(msg) {
+  let error = document.getElementById("error");
+  error.style.display = "block";
+  error.innerHTML = msg;
+}
 
-      async function is_email_taken(email_value) {
-        const response = await fetch(
-          "http://127.0.0.1:8000/registration/handle_email_is_taken/post",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": csrfToken,
-            },
-            body: JSON.stringify({
-              email: email_value,
-            }),
-          }
-        )
-        if (response.ok) {
-          const data = await response.json();
-          return data.is_Taken;
-        }
-      }
+async function is_email_taken(email_value) {
+  const response = await fetch(
+    "http://127.0.0.1:8000/registeration/handle_email_is_taken/post",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify({
+        email: email_value,
+      }),
+    }
+  )
+  if (response.ok) {
+    const data = await response.json();
+    return data.is_Taken;
+  }
+}
 
-      function check_passwords() {
-        if (
-          document.getElementById("password_input").value ===
-          document.getElementById("confirm_password_input").value
-        ) {
-          return true;
-        } else {
-          showError("Password don't martch");
-          return false;
-        }
-      }
+function check_passwords() {
+  if (
+    document.getElementById("password_input").value ===
+    document.getElementById("confirm_password_input").value
+  ) {
+    return true;
+  } else {
+    showError("Password don't martch");
+    return false;
+  }
+}
 
-      function is_valid_email(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email) ? true : false;
-      }
+function is_valid_email(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) ? true : false;
+}
 
-      async function check_email(email) {
+async function check_email(email) {
 
-        if (is_valid_email(email)) {
-          if (await is_email_taken(email)) {
-            showError("Email is Taken");
-            return false;
-          } else {
-            document.getElementById("error").style.display = "none";
-            return true;
-          }
-        } else {
-          showError("Invalid email");
-          return false;
-        }
-      }
+  if (is_valid_email(email)) {
+    if (await is_email_taken(email)) {
+      showError("Email is Taken");
+      return false;
+    } else {
+      document.getElementById("error").style.display = "none";
+      return true;
+    }
+  } else {
+    showError("Invalid email");
+    return false;
+  }
+}
 
-      function check_all_inputs_in_form(form) {
-        const inputs = form.querySelectorAll("input");
+function check_all_inputs_in_form(form) {
+  const inputs = form.querySelectorAll("input");
 
-        let allInputsFilled = true;
+  let allInputsFilled = true;
 
-        inputs.forEach((input) => {
-          if (input.value.trim() === "") {
-            allInputsFilled = false;
-          }
-        });
+  inputs.forEach((input) => {
+    if (input.value.trim() === "") {
+      allInputsFilled = false;
+    }
+  });
 
-        if (allInputsFilled) {
-          return true;
-        } else {
-          showError("Some inputs are empty");
-          return false;
-        }
-      }
+  if (allInputsFilled) {
+    return true;
+  } else {
+    showError("Some inputs are empty");
+    return false;
+  }
+}
 
-      const email_input = document.getElementById("email_input");
-      email_input.addEventListener("blur", () => {
-        check_email(email_input.value.toLowerCase().trim());
-      });
+const email_input = document.getElementById("email_input");
+email_input.addEventListener("blur", () => {
+  check_email(email_input.value.toLowerCase().trim());
+});
 
-      const form = document.getElementById("form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+const form = document.getElementById("form");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-        if (
-          (await check_email(email_input.value.toLowerCase().trim())) &&
-          check_passwords() &&
-          check_all_inputs_in_form(form)
-        ) {
-          form.submit();
-        }
-      });
+  if (
+    (await check_email(email_input.value.toLowerCase().trim())) &&
+    check_passwords() &&
+    check_all_inputs_in_form(form)
+  ) {
+    form.submit();
+  }
+});
     </script>
 </body>
 </html>

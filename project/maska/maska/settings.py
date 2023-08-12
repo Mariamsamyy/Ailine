@@ -8,7 +8,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'CustomerServies',
-
+    'cart',
     'flight_options',
     'home',
     'registeration',

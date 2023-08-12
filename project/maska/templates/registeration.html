@@ -26,10 +26,7 @@
           </div>
           <div class="nav-menu" id="navMenu">
             <ul>
-              <li><a href="#" class="link">Home</a></li>
-              <li><a href="#" class="link">Booking</a></li>
-              <li><a href="#" class="link">Services</a></li>
-              <li><a href="#" class="link">About</a></li>
+              <li><a href="{% url 'home'%}"class="link">Home</a></li>
             </ul>
           </div>
           <div class="nav-button">
@@ -135,9 +132,9 @@
                 </div>
                 <div class="uploadimg">
                    <label for="id-image"><i class='bx bx-upload' style="cursor: pointer;"></i> </label>
-                  <input id="id-image" type="file" name="image" style="display: none; visibility: none;"
-                   >
-                    <span class="tooltiptext" style="color: #fff;">Upload your Image</span>
+                   <input id="id-image" type="file" name="image" accept="image/*" style="display: none; visibility: none;"
+                onchange="getImage(this.value);">
+              <span class="tooltiptext" style="color: #fff;">Upload your Image</span>
                   </div>
                 <div id="display-image" style="color: #fff;"></div>
               </div> 
@@ -164,6 +161,11 @@
       </div>
 
       <script>
+
+        function getImage(imagename) {
+          var newimg = imagename.replace(/^.*\\/, "");
+          document.getElementById("display-image").innerHTML = newimg;
+        }
 
          var a = document.getElementById("loginBtn");
 var b = document.getElementById("registerBtn");

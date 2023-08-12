@@ -422,9 +422,6 @@
                 <input id="id_password" type="password" class="input-field" placeholder="Password" name="passwordd" />
                 <i class="bx bx-lock-alt"></i>
                 <i id="togglePassword" class="fa-regular fa-eye-slash"></i>
-                <div class="forgotpass">
-                  <a href="forgot.html">Forgot password?</a>
-                </div>
               </div>
               {% if error_message %}
                 <div class="error-message">{{ error_message }}</div>
@@ -461,6 +458,33 @@
                 <input type="password" class="input-field" placeholder="Password" name="password" id="password_input" />
                 <i class="bx bx-lock-alt"></i>
                 <i id="togglePassword2" class="fa-regular fa-eye-slash"></i>
+              </div>
+              <div class="content">
+                <div class="strength-box">
+                  <p>To strength your password</p>
+                  <ul class="requirement-list">
+                    <li>
+                      <i class="fa-solid fa-circle"></i>
+                      <span>At least 8 Character length</span>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-circle"></i>
+                      <span>At least 1 number(0..9)</span>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-circle"></i>
+                      <span>At least 1 lowercase length (a..z)</span>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-circle"></i>
+                      <span>At least 1 Special symbol(@#$..)</span>
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-circle"></i>
+                      <span>At least 1 uppercase letter(A..Z)</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="input-box">
                 <input id="confirm_password_input" type="password" class="input-field" placeholder="confirm password"
@@ -527,6 +551,33 @@ function register() {
   x.style.opacity = 0;
   y.style.opacity = 1;
 }
+
+
+const requirements = [
+  { regex: /.{8,}/, index: 0 },
+  { regex: /.*[0-9].*/, index: 1 },
+  { regex: /.*[a-z].*/, index: 2 },
+  { regex: /.*[^A-Za-z0-9].*/, index: 3 },
+  { regex: /.*[A-Z].*/, index: 4 },
+];
+
+const requirementList = document.querySelectorAll(".requirement-list li");
+const passwordInput = document.getElementById("password_input"); // Add this line
+
+passwordInput.addEventListener("input", (event) => {
+  const passwordValue = event.target.value;
+
+  requirements.forEach((item) => {
+    const isValid = item.regex.test(passwordValue);
+    const requirementItem = requirementList[item.index];
+
+    if (isValid) {
+      requirementItem.querySelector("i").classList = "fa-solid fa-check";
+    } else {
+      requirementItem.querySelector("i").classList = "fa-solid fa-circle";
+    }
+  });
+});
 
 function validateForm() {
   const firstName = document.forms["myform"]["fname"].value;

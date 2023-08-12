@@ -5,7 +5,7 @@ from .models import FlightOrder
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ['rating_value']  # Specify the fields you want to include in the form
+        fields = ['rating_value']  
 
 
 class FlightOrderForm(forms.ModelForm):

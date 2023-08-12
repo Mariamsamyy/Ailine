@@ -37,6 +37,7 @@
             font-size: 24px;
         }
         
+
         .home-button {
             background: none;
             border: none;
@@ -50,6 +51,45 @@
             color: lightgray;
         }
                
+
+        .banner .cart {
+            display: flex;
+            align-items: center;
+        }
+        
+        .banner .cart i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .banner .cart p {
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .cart {
+            display: flex;
+            background-color: white;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 3px;
+            width: 80px;
+        }
+        
+        .cart p {
+            height: 22px;
+            width: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 22px;
+            background-color: #0A2558;
+            color: white;
+        }
+        
+        
+
         .cart-item .flight-id {
             font-size: 16px;
             font-weight: bold;
@@ -455,10 +495,17 @@
 <body>
     <div class="banner">
         <h1 class="logo">Maska Airlines</h1>
+
         <button class="home-button">
             <i class="fas fa-home"></i>
             <span class="tooltip">Go back to home page</span>
         </button>
+
+        <div class="cart">
+            <i class="fa fa-fw fa-shopping-cart"></i>
+            <p id="cart-count">0</p>
+        </div>
+
     </div>
 
       <div class="main">

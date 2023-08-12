@@ -1,61 +1,60 @@
-from django.shortcuts import render ,redirect,HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, redirect
+# from registeration.models import CUSTOMER,Login
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse,JsonResponse
-from .models import User
-import json
+from django.contrib import messages
 
-# Create your views here.
+def HomePage(request):
+    return render(request, 'home/home.html')
 
-def render_login (request):
-    return render(request , 'registration/login.html')
+def SignupPage(request):
+    if request.method == 'POST':
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        pass1 = request.POST.get('password')
+        pass2 = request.POST.get('confirm_password')
 
-def render_signup (request):
-    return render(request , 'registeration.html')
+        if not fname or not lname or not email or not pass1 or not pass2:
+            messages.error(request, 'All fields are required.')
+            return render(request, 'registeration.html')
 
-def render_forget_password (request):
-    return render(request , 'registration/forgetpassword.html')
+        if pass1 != pass2:
+            messages.error(request, 'Passwords do not match.')
+            return render(request, 'registeration.html')
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'User with this email already exists.')
+            return render(request, 'registeration.html')
+
+        # Create a new user
+        my_user = User.objects.create_user(
+            username=email, email=email, password=pass1, first_name=fname, last_name=lname)
+        my_user.save()
+        messages.success(request, 'You have successfully signed up.')
+        return redirect('home')
+
+    return render(request, 'registeration.html')
 
 def LoginPage(request):
     if request.method == "POST":
         email = request.POST.get('emaill')
         pass1 = request.POST.get('passwordd')
+        print("Email:", email)  # Print email for debugging
+        print("Password:", pass1)  # Print password for debugging
         user = authenticate(request, username=email, password=pass1)
-        if User is not None:
-            login(request, user)
-            return redirect('home')
+        print("User:", user)  # Print user object for debugging
+        if user is not None:
+           login(request, user)
+           messages.success(request, 'You have been logged in.')
+           return render(request, 'home/home.html')
         else:
-            return HttpResponse("Wrong")
+           messages.success(request, 'error please try again.')
+           return render(request, 'registeration.html')
 
-    return render(request, 'login.html')
-
-
-def handle_email_is_taken(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        email = data.get("email")
-        user = User.objects.filter(email=email).first()
-        if user : return JsonResponse({"is_Taken" : True})
-        else : return JsonResponse({"is_Taken" : False})
-    else : return redirect('/registeration/signup')
+    return render(request, 'registeration.html')
 
 
-def handle_signup_post (request):
-    if request.method == 'POST':
-        firstName= request.POST.get("fname")
-        lastName= request.POST.get("lname")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        NationalId = request.POST.get("nationalID")
-        
-        new_user = User.objects.create(firstName=firstName,lastName=lastName,email=email, password=password,NationalId=NationalId)
-        new_user.save()
-      
-        return render(request , 'home.html',{'user': new_user}) # redirect home
-    else : return redirect('/registeration/signup')
-
-def HomePage(request):
-    return render(request, 'home.html')
-
-
-
-
+def LogoutPage(request):
+    logout(request)
+    return redirect('registeration')  

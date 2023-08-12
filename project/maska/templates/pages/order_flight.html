@@ -1,6 +1,47 @@
-<!-- templates/order_flight.html -->
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Order Flight</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <title>Order Flight</title>
+</head>
+<body style="background-color: #081D45;">
+
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Order Flight</button>
+    </form>
+</div>
+
+
+
+<style>
+  
+/* Style for the form container */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Limit the width of the box */
+    margin: 0 auto; /* Center the box horizontally */
+    margin-top: 50px; /* Add top margin for spacing */
+}
+
+/* Style for the submit button */
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+</style>
+</body>
+</html>

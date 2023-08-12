@@ -1,29 +1,32 @@
-{% load static%}
+
+
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <title> Quality </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
 <body>
     <div class="sidebar">
         <div class="logo-details">
-            <span class="logo_name ">Quality Control</span>
+          <span class="logo_name ">Quality Control</span>
         </div>
         <ul class="nav-links">
-         
+        
             <li>
                 <a href="{% url 'rating_display' %}">
                     <i class='fa fa-star checked'></i>
                     <span class="links_name">Rating</span>
                 </a>
             </li>
+            
             <li>
-              <a href="{% url 'show_comments' %}">
+                <a href="{% url 'show_comments' %}">
                     <i class='fa fa-comments-o'></i>
                     <h1 class="links_name">Comments</h1>
                 </a>
@@ -32,7 +35,6 @@
                 <a href="{% url 'trial' %}">
                     <i class='fa fa-plane'></i>
                     <h1 class="links_name">Flights</h1>
-                </a>
                 </a>
             </li>
             <li>
@@ -65,21 +67,16 @@
                 </li>
             </div>
         </nav>
-    </section>
-
-                <!-- Page content -->
-  <div class="main">
-
-    <h1>All Comments</h1>
-           <p> <ul>
-                {% for comment in comments %}
-                <li>{{ comment.name }}: {{ comment.comment }}</li>
-                {% endfor %}
-            </ul>
-        </p>
-        </div>
-<style>
-    * {
+         <!-- Page content -->
+    <div class="main">
+    <center> <h1>Reservations Summary:</h1><br><br></center>
+    <h3>Edited Reservations:</h3>
+    <p>Number of Travelers Who Edited Their Reservations: {{ edited_count }}</p><br>
+    <h3>Canceled Reservations:</h3>
+    <p>Number of Travelers Who Canceled Their Reservations: {{ canceled_count }}</p>
+    </div>
+     <style>
+             * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -351,11 +348,9 @@
     display: block;
   }
   
-</style>
-
-    <script src="comment.js"></script>
+        </style>
+    <script src="rate.js"> </script>
+    
 </body>
+
 </html>
-
-
-

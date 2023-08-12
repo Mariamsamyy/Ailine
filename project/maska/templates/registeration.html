@@ -122,7 +122,7 @@
     .register-container {
         position: absolute;
         right: -520px;
-        bottom: 15px;
+        bottom: 80px;
         width: 500px;
         display: flex;
         flex-direction: column;
@@ -412,7 +412,7 @@
               <h3>Welcome back ...</h3>
               <header>Log in</header>
             </div>
-            <form name="loginForm" id="loginForm" onsubmit="validateLogin(event)" method="post" >
+            <form name="loginForm" id="loginForm"  method="post" action="/registeration/login/">
               {% csrf_token %}
               <div class="input-box">
                 <input type="email" class="input-field" placeholder="Email" name="emaill" />
@@ -426,13 +426,16 @@
                   <a href="forgot.html">Forgot password?</a>
                 </div>
               </div>
+              {% if error_message %}
+                <div class="error-message">{{ error_message }}</div>
+              {% endif %}
               <div class="input-box">
                 <input type="submit" class="submit" value="Log in" />
-                <button>Log in</button>
+                
               </div>
             </form>
           </div>
-          <form name="myform" id="form" onsubmit="validations(event)" method="POST" action="/registeration/signup/post">
+          <form name="myform" id="form"   method="POST" action="/registeration/signup/">
             {% csrf_token %}
             <!-- register -->
             <div class="register-container" id="register">
@@ -473,7 +476,7 @@
                 <div class="uploadimg">
                    <label for="id-image"><i class='bx bx-upload' style="cursor: pointer;"></i> </label>
                   <input id="id-image" type="file" name="image" style="display: none; visibility: none;"
-                    onchange="getImage(this.value);">
+                   >
                     <span class="tooltiptext" style="color: #fff;">Upload your Image</span>
                   </div>
                 <div id="display-image" style="color: #fff;"></div>
@@ -482,10 +485,18 @@
               <div style="height: 20px;">
                 <span id="error" class="error-message"></span>
               </div>
+              {% if messages %}
+              <div class="messages">
+              {% for message in messages %}
+              <div class="message{% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</div>
+              {% endfor %}
+              </div>
+              {% endif %}
+
               <div class="input-box">
                 <a href="/registration/login">Already have account</a>
               
-                <input type="submit" class="submit" value="Register"  name="signup"/>
+                <input type="submit" class="submit" value="Register"  name="signup"id="submitButton"/>
               </div>
             </div>
           </form>
@@ -495,6 +506,7 @@
       </div>
 
       <script>
+
          var a = document.getElementById("loginBtn");
 var b = document.getElementById("registerBtn");
 var x = document.getElementById("login");
@@ -517,105 +529,61 @@ function register() {
   x.style.opacity = 0;
   y.style.opacity = 1;
 }
-      const csrfToken = document.querySelector(
-        "[name=csrfmiddlewaretoken]"
-      ).value;
 
-      function showError(msg) {
-        let error = document.getElementById("error");
-        error.style.display = "block";
-        error.innerHTML = msg;
-      }
+{% comment %} function validations(event) {
+  event.preventDefault();
+  let errorMessages = "";
+  let showError = false;
 
-      async function is_email_taken(email_value) {
-        const response = await fetch(
-          "http://127.0.0.1:8000/registration/handle_email_is_taken/post",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": csrfToken,
-            },
-            body: JSON.stringify({
-              email: email_value,
-            }),
-          }
-        )
-        if (response.ok) {
-          const data = await response.json();
-          return data.is_Taken;
-        }
-      }
+  let x = document.forms["myform"]["fname"].value;
+  let y = document.forms["myform"]["lname"].value;
+  let j = document.forms["myform"]["email"].value;
+  let h = document.forms["myform"]["password"].value;
+  let d = document.forms["myform"]["confirm_password"].value;
+  let n = document.forms["myform"]["nationalID"].value;
 
-      function check_passwords() {
-        if (
-          document.getElementById("password_input").value ===
-          document.getElementById("confirm_password_input").value
-        ) {
-          return true;
-        } else {
-          showError("Password don't martch");
-          return false;
-        }
-      }
+  if (x === "") {
+    errorMessages = "You must fill the first name field<br>";
+    showError = true;
+  } else if (y === "") {
+    errorMessages = "You must fill the last name field<br>";
+    showError = true;
+  } else if (j === "") {
+    errorMessages = "You must fill the email field<br>";
+    showError = true;
+  } else if (h === "") {
+    errorMessages = "You must fill the password field<br>";
+    showError = true;
+  } else if (d === "") {
+    errorMessages = "You must fill the confirm password field<br>";
+    showError = true;
+  } else if (h !== d) {
+    errorMessages = "Passwords do not match<br>";
+    showError = true;
+  }
+  else if (n === "") {
+    errorMessages = "You must fill the national ID";
+    showError = true;
+  }
 
-      function is_valid_email(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email) ? true : false;
-      }
+  const errorSpan = document.getElementById("error");
+  if (showError) {
+    errorSpan.innerHTML = errorMessages;
+    errorSpan.style.display = "block";
+    return false; 
+  } else {
+    errorSpan.style.display = "none";
+    return true; 
+  }
+}
 
-      async function check_email(email) {
+document.getElementById("submitButton").addEventListener("click", function(event) {
+  if (!validations(event)) {
+    event.preventDefault(); // Prevent form submission if validation fails
+    console.log("hh")
+  }
+}); {% endcomment %}
 
-        if (is_valid_email(email)) {
-          if (await is_email_taken(email)) {
-            showError("Email is Taken");
-            return false;
-          } else {
-            document.getElementById("error").style.display = "none";
-            return true;
-          }
-        } else {
-          showError("Invalid email");
-          return false;
-        }
-      }
-
-      function check_all_inputs_in_form(form) {
-        const inputs = form.querySelectorAll("input");
-
-        let allInputsFilled = true;
-
-        inputs.forEach((input) => {
-          if (input.value.trim() === "") {
-            allInputsFilled = false;
-          }
-        });
-
-        if (allInputsFilled) {
-          return true;
-        } else {
-          showError("Some inputs are empty");
-          return false;
-        }
-      }
-
-      const email_input = document.getElementById("email_input");
-      email_input.addEventListener("blur", () => {
-        check_email(email_input.value.toLowerCase().trim());
-      });
-
-      const form = document.getElementById("form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (
-          (await check_email(email_input.value.toLowerCase().trim())) &&
-          check_passwords() &&
-          check_all_inputs_in_form(form)
-        ) {
-          form.submit();
-        }
-      });
     </script>
 </body>
 </html>

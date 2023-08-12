@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CustomerserviceConfig(AppConfig):
+class PagesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'CustomerService'
+    name = 'pages'

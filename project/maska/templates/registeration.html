@@ -435,7 +435,7 @@
               </div>
             </form>
           </div>
-          <form name="myform" id="form"   method="POST" action="/registeration/signup/">
+          <form name="myform" id="form"  onsubmit="return validateForm()" method="POST" action="/registeration/signup/">
             {% csrf_token %}
             <!-- register -->
             <div class="register-container" id="register">
@@ -493,9 +493,7 @@
               </div>
               {% endif %}
 
-              <div class="input-box">
-                <a href="/registration/login">Already have account</a>
-              
+              <div class="input-box">              
                 <input type="submit" class="submit" value="Register"  name="signup"id="submitButton"/>
               </div>
             </div>
@@ -530,59 +528,58 @@ function register() {
   y.style.opacity = 1;
 }
 
-{% comment %} function validations(event) {
-  event.preventDefault();
-  let errorMessages = "";
-  let showError = false;
+function validateForm() {
+  const firstName = document.forms["myform"]["fname"].value;
+  const lastName = document.forms["myform"]["lname"].value;
+  const email = document.forms["myform"]["email"].value;
+  const password = document.forms["myform"]["password"].value;
+  const confirmPassword = document.forms["myform"]["confirm_password"].value;
+  const nationalID = document.forms["myform"]["nationalID"].value;
 
-  let x = document.forms["myform"]["fname"].value;
-  let y = document.forms["myform"]["lname"].value;
-  let j = document.forms["myform"]["email"].value;
-  let h = document.forms["myform"]["password"].value;
-  let d = document.forms["myform"]["confirm_password"].value;
-  let n = document.forms["myform"]["nationalID"].value;
-
-  if (x === "") {
-    errorMessages = "You must fill the first name field<br>";
-    showError = true;
-  } else if (y === "") {
-    errorMessages = "You must fill the last name field<br>";
-    showError = true;
-  } else if (j === "") {
-    errorMessages = "You must fill the email field<br>";
-    showError = true;
-  } else if (h === "") {
-    errorMessages = "You must fill the password field<br>";
-    showError = true;
-  } else if (d === "") {
-    errorMessages = "You must fill the confirm password field<br>";
-    showError = true;
-  } else if (h !== d) {
-    errorMessages = "Passwords do not match<br>";
-    showError = true;
+  if (firstName === "") {
+      showError("You must fill the first name field");
+      return false;
   }
-  else if (n === "") {
-    errorMessages = "You must fill the national ID";
-    showError = true;
+  if (lastName === "") {
+      showError("You must fill the last name field");
+      return false;
+  }
+  if (email === "") {
+      showError("You must fill the email field");
+      return false;
+  }
+  if (password === "") {
+      showError("You must fill the password field");
+      return false;
+  }
+  if (confirmPassword === "") {
+      showError("You must fill the confirm password field");
+      return false;
+  }
+  if (password !== confirmPassword) {
+      showError("Passwords do not match");
+      return false;
+  }
+  if (nationalID === "") {
+      showError("You must fill the national ID");
+      return false;
   }
 
-  const errorSpan = document.getElementById("error");
-  if (showError) {
-    errorSpan.innerHTML = errorMessages;
-    errorSpan.style.display = "block";
-    return false; 
-  } else {
-    errorSpan.style.display = "none";
-    return true; 
-  }
+  // Clear any previous error messages
+  clearError();
+  return true;
 }
 
-document.getElementById("submitButton").addEventListener("click", function(event) {
-  if (!validations(event)) {
-    event.preventDefault(); // Prevent form submission if validation fails
-    console.log("hh")
-  }
-}); {% endcomment %}
+function showError(message) {
+  const errorSpan = document.getElementById("error");
+  errorSpan.innerHTML = message;
+  errorSpan.style.display = "block";
+}
+
+function clearError() {
+  const errorSpan = document.getElementById("error");
+  errorSpan.style.display = "none";
+}
 
     </script>
 </body>

@@ -10,7 +10,6 @@
 <body>
   <main>
 
-    <!-- <img src="icon-star.svg" alt="star" class="ratingState"> -->
     <h1 class="ratingState">Thank you for choosing us</h1>
     <h3 class="ratingState">Please rate your shopping experience. All feedback is appreciated to help us improve our offering!</h3>
         <form method="POST" action="{% url 'submit_rating' %}">
@@ -25,24 +24,23 @@
 </body>
 
 <style>
- /* rating.css */
-/* Reset some default styles */
+
 body, h1, p, form {
     margin: 0;
     padding: 0;
 }
 
-/* Basic styling */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #081D45; /* Set the background color */
-    color:black; /* Set text color to white */
+    background-color: #081D45; 
+    color:black; 
     line-height: 1.6;
     text-align: center;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    min-height: 100vh; /* Ensure the box covers the entire viewport */
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
 }
 
 main {
@@ -65,7 +63,7 @@ form {
     margin-top: 20px;
 }
 
-/* Styling the submit button */
+/* submit button style */
 form button[type="submit"] {
     margin-top: 10px;
     background-color: #007bff;

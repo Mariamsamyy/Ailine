@@ -80,4 +80,3 @@ def most_ordered_flight(request):
     most_ordered_flight = FlightOrder.objects.values('flight_number').annotate(count=Count('flight_number')).order_by('-count').first()
     return render(request, 'pages/most_ordered_flight.html', {'most_ordered_flight': most_ordered_flight})
 
-

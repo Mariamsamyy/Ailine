@@ -11,5 +11,6 @@ urlpatterns = [
     path('order_flight/', views.order_flight, name='order_flight'),
     path('most_ordered_flight/', views.most_ordered_flight, name='most_ordered_flight'), 
     path('trial/', views.trial, name='trial'),
+    
 
 ]

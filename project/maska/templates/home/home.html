@@ -35,8 +35,10 @@
 
     <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
 
-    <a href="/Registerstion/registeration.html"
+    <a href="{% url 'login'%}"
       class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey login"><i class='bx bx-log-in'></i> Login</a>
+
+    <a href="{% url 'logout'%}" class="logout button"> Logout </a>
 
   </div>
 

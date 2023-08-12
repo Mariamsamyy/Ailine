@@ -6,5 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/' , include("home.urls")),
     path('flight/' , include("flight_options.urls")),
-    path('registeration/' , include('registeration.urls')),
+    path('registeration/' , include('registeration.urls'), name='home'),
 ]

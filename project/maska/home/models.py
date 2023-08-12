@@ -33,5 +33,5 @@ class RoundFlight(models.Model):
     ReturnRoundBordingTime= models.FloatField(default=0)
     ReturnRoundLandingTime= models.FloatField(default=0)
     RoundPrice=models.IntegerField(default=0)
-    # def __str__(self):
-    #     return f"{self.id}: {self.Roundorigen} to {self.Rounddestination} Duration: {self.duration} Hours  Travile Date: {self.travile_time} Bording Time: {self.BordingTime}  Landing Time: {self.LandingTime} Price: {self.Price} EGP"
+    def __str__(self):
+         return f"{self.id}: {self.Roundorigen} to {self.Rounddestination} Duration: {self.Roundduration} Hours  Travile Date: {self.Roundtravil_date} Bording Time: {self.RoundBordingTime}  Landing Time: {self.RoundLandingTime} Price: {self.RoundPrice} EGP"

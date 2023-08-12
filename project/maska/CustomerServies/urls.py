@@ -1,13 +1,8 @@
 from django.urls import path
-from . import views
+from .import views
 
 urlpatterns = [
-   
-    path ('login/' , views.LoginPage , name="render_login"),
-    path ('signup/' , views.render_signup , name="render_signup"),
+    path('options/',views.options),
+    path('Round_trip/',views.RoundTrip),
     
-    path ('signup/post' , views.handle_signup_post , name="handle_signup_post"),
-    path ('handle_email_is_taken/post' , views.handle_email_is_taken , name="handle_email_is_taken"),
-    path ('forgetpassword/' , views.render_forget_password , name="render_forget_password"),
-   
-    ]
+]

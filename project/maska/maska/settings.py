@@ -9,11 +9,9 @@ INSTALLED_APPS = [
 
     'CustomerServies',
     'cart',
-    'flight_options',
     'home',
     'registeration',
     'pages',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,6 +98,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_ROOT='static'
 STATIC_URL = 'static/'
+STATICFILES_DIRS=[os.path.join('maska/static')]
 # STATICFILES_DIRS=[os.path.join('maska/static')]
 
 # Default primary key field type

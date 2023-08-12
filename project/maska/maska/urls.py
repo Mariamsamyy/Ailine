@@ -9,7 +9,11 @@ urlpatterns = [
     path('flightt/' , include("CustomerServies.urls")),
 
     path('flight/' , include("flight_options.urls")),
-    path('registeration/' , include('registeration.urls')),
+
+    path('registeration/' , include('registeration.urls'), name='home'),
+
+    
     path('', include('pages.urls')),
+
 
 ]

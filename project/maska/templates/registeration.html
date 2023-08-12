@@ -6,8 +6,6 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/0b0cd0c012.js" crossorigin="anonymous"></script>
   <title>Registration</title>
-  {% load static%}
-    <link rel="stylesheet" href="{% static 'css/sign.css'%}" />
     
     <style>
       * {
@@ -18,7 +16,7 @@
     }
     
     body {
-        /* background: url("kk.PNG"); */
+        {% comment %} background: url("/Registerstion/kk.PNG"); {% endcomment %}
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -95,7 +93,9 @@
     
     .nav-menu-btn {
         display: none;
+    
     }
+    
     
     .form-box {
         position: relative;
@@ -103,10 +103,11 @@
         align-items: center;
         justify-content: center;
         width: 512px;
-        height: 600px;
+        height: 700px;
         overflow: hidden;
         z-index: 1;
     }
+    
     
     .login-container {
         position: absolute;
@@ -117,10 +118,10 @@
         transition: .5s ease-in-out;
     }
     
-    /*  */
+    
     .register-container {
         position: absolute;
-        right: 0px;
+        right: -520px;
         bottom: 15px;
         width: 500px;
         display: flex;
@@ -128,6 +129,7 @@
         transition: .5s ease-in-out;
     
     }
+    
     
     .top {
     
@@ -164,6 +166,11 @@
         background: rgba(255, 255, 255, 0.25);
     }
     
+    .input-box {
+        height: 40px;
+        margin-bottom: 20px;
+    }
+    
     .input-box i {
         position: relative;
         top: -35px;
@@ -171,9 +178,12 @@
         color: #fff;
     }
     
+    
     .input-box #togglePassword,
     #togglePassword2,
     #togglePassword3 {
+    
+    
         cursor: pointer;
         position: relative;
         top: -27px;
@@ -183,7 +193,8 @@
     
     .input-box .forgotpass {
         position: relative;
-        top: -15px;
+        top: -22px;
+        left: -15px;
     }
     
     .fa-regular.fa-eye-slash {
@@ -206,6 +217,8 @@
         background: rgba(255, 255, 255, 0.7);
         cursor: pointer;
         transition: .3s ease-in-out;
+        margin-top: 5px;
+    
     }
     
     .submit:hover {
@@ -233,6 +246,15 @@
         font-size: 18px;
         display: block;
         margin-bottom: 5px;
+    
+    }
+    
+    #loginErrorMessages {
+        color: red;
+        font-size: 18px;
+        display: block;
+        margin-bottom: 5px;
+    
     }
     
     .uploadimg {
@@ -268,6 +290,53 @@
     
     .uploadimg:hover .tooltiptext {
         visibility: visible;
+    }
+    
+    .upload {
+    
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .upload .uploadimg label {
+        color: #fff;
+    
+    }
+    
+    .upload .uploadimg i {
+        font-size: 25px;
+        margin: 20px;
+    
+    
+    }
+    
+    .content {
+        margin: 10px 0 10px;
+    }
+    
+    .content p {
+        font-size: 1rem;
+        color: #fff;
+    }
+    
+    .requirement-list {
+        list-style: none;
+        color: #fff;
+    
+    }
+    
+    .requirement-list li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+    
+    .requirement-list li:nth-child(even) {
+        margin-right: 2px;
+    }
+    
+    .strength-box {
+        border-radius: 10px;
+        padding: 10px;
     }
     
     @media only screen and (max-width: 786px) {
@@ -311,23 +380,6 @@
             background: rgba(255, 255, 255, 0.01);
         }
     }
-    
-    .upload {
-    
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .upload .uploadimg label {
-        color: #fff;
-    
-    }
-    
-    .upload .uploadimg i {
-        font-size: 25px;
-        margin: 20px;
-    
-    }
     </style>
 </head>
 <body>
@@ -355,7 +407,31 @@
     
         <div class="form-box">
           <!-- Login -->
-      
+          <div class="login-container" id="login">
+            <div class="top">
+              <h3>Welcome back ...</h3>
+              <header>Log in</header>
+            </div>
+            <form name="loginForm" id="loginForm" onsubmit="validateLogin(event)" method="post" >
+              {% csrf_token %}
+              <div class="input-box">
+                <input type="email" class="input-field" placeholder="Email" name="emaill" />
+                <i class="bx bx-user"></i>
+              </div>
+              <div class="input-box">
+                <input id="id_password" type="password" class="input-field" placeholder="Password" name="passwordd" />
+                <i class="bx bx-lock-alt"></i>
+                <i id="togglePassword" class="fa-regular fa-eye-slash"></i>
+                <div class="forgotpass">
+                  <a href="forgot.html">Forgot password?</a>
+                </div>
+              </div>
+              <div class="input-box">
+                <input type="submit" class="submit" value="Log in" />
+                <button>Log in</button>
+              </div>
+            </form>
+          </div>
           <form name="myform" id="form" onsubmit="validations(event)" method="POST" action="/registeration/signup/post">
             {% csrf_token %}
             <!-- register -->
@@ -419,6 +495,28 @@
       </div>
 
       <script>
+         var a = document.getElementById("loginBtn");
+var b = document.getElementById("registerBtn");
+var x = document.getElementById("login");
+var y = document.getElementById("register");
+
+function login() {
+  x.style.left = "4px";
+  y.style.right = "-520px";
+  a.className += " white-btn";
+  b.className = "btn";
+  x.style.opacity = 1;
+  y.style.opacity = 0;
+}
+
+function register() {
+  x.style.left = "-510px";
+  y.style.right = "5px";
+  a.className = "btn";
+  b.className += " white-btn";
+  x.style.opacity = 0;
+  y.style.opacity = 1;
+}
       const csrfToken = document.querySelector(
         "[name=csrfmiddlewaretoken]"
       ).value;

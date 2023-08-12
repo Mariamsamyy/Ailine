@@ -1,5 +1,6 @@
 from django.shortcuts import render ,redirect,HttpResponseRedirect
-from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse,JsonResponse
 from .models import User
 import json
 
@@ -14,6 +15,19 @@ def render_signup (request):
 def render_forget_password (request):
     return render(request , 'registration/forgetpassword.html')
 
+def LoginPage(request):
+    if request.method == "POST":
+        email = request.POST.get('emaill')
+        pass1 = request.POST.get('passwordd')
+        user = authenticate(request, username=email, password=pass1)
+        if User is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            return HttpResponse("Wrong")
+
+    return render(request, 'login.html')
+
 
 def handle_email_is_taken(request):
     if request.method == 'POST':
@@ -23,6 +37,7 @@ def handle_email_is_taken(request):
         if user : return JsonResponse({"is_Taken" : True})
         else : return JsonResponse({"is_Taken" : False})
     else : return redirect('/registeration/signup')
+
 
 def handle_signup_post (request):
     if request.method == 'POST':

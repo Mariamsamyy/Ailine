@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> multitrip booking</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="navbar">
+            <a class="active" href="/Home/Home.html"><i class="fa fa-fw fa-home"></i> Home</a> 
+            <a href="#"><i class="fa fa-fw fa-search"></i> Flights</a> 
+            <a href="/contact-us/contact-us.html"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
+            <a href="/Registerstion/registeration.html"><i class="fa fa-fw fa-user"></i> Login</a>
+          </div>
+        <!-- <h1>MASKA AIR</h1> -->
+        <h2>BOOK A FLIGHT</h2>   
+        <!--Make sure the form has the autocomplete function switched off:-->
+        <form autocomplete="off" action="/action_page.php">
+         <div class="autocomplete" style="width:300px;">
+        <div class="style">
+        <label class="t1" for="From">From</label> <br>
+        <input id="F1" type="text" name="From" placeholder="Select Country"><br><br>
+        <label class="t1" for="To">To</label><br>
+        <input id="T1" type="text" name="To" placeholder="Select Country"><br><br>
+        <label class="t1" for="Date">Departure Date</label>
+        <input id="F1" type="date" id="date" name="d">
+        <br><br>
+    </div>
+    <div class="style2">
+            <label class="t1" for="From">From</label> <br>
+            <input id="F2" type="text" name="From" placeholder="Select Country"><br><br>
+            <label class="t1" for="To">To</label><br>
+            <input id="T2" type="text" name="To" placeholder="Select Country"><br><br>
+            <label class="t1" for="Date">Departure Date</label>
+            <input id="F2" type="date" id="date" name="d">
+            <br><br>
+                </div>
+                  <div class="style3">
+            <label class="t1" for="From">From</label> <br>
+            <input id="F3" type="text" name="From" placeholder="Select Country"> <br><br>
+            <label class="t1" for="To">To</label><br>
+            <input id="T3" type="text" name="To" placeholder="Select Country"><br><br>
+            <label class="t1" for="Date">Departure Date</label>
+            <input id="F3" type="date" id="date" name="d">
+            <br><br>
+        </div>
+        <div class="style4">
+            <label class="t1" for="From">From</label> <br>
+            <input id="F4" type="text" name="From" placeholder="Select Country"><br><br>
+            <label class="t1" for="To">To</label><br>
+            <input id="T4" type="text" name="To" placeholder="Select Country"><br><br>
+            <label class="t1" for="Date">Departure Date</label>
+            <input id="F4" type="date" id="date" name="d">
+        </div>
+    </div>
+               <select class="AD">
+                <option value="Adults">1 Adults</option>
+                <option value="Adults">2 Adults</option>
+                <option value="Adults">3 Adults</option>
+                <option value="Adults">4 Adults</option>
+                <option value="Adults">5 Adults</option>
+                </select>
+                <br><br>
+                <select class="CH">
+                <option value="Child(ren)">0 Child(ren) 2-11 years</option>
+                 <option value="Child(ren)">1 Child(ren)</option>
+                 <option value="Child(ren)">2 Child(ren)</option>
+                 <option value="Child(ren)">3 Child(ren)</option>
+                 <option value="Child(ren)">4 Child(ren)</option>
+                 </select>
+                 <br><br>
+                 <select class="IN">
+                 <option value="Infant(s)">0 Infant(s) under 2 years</option>
+                  <option value="Infant(s)">1Infant(s)</option>
+                  <option value="Infant(s)">2 Infant(s)</option>
+                  </select>
+                  <br><br>
+                  <a href="https://www.egyptair.com/en/Book/Pages/book-flight.aspx?home=myhome">
+            <input class="sign" type="submit" value="SHOW FLIGHTS">
+            <br><br>
+                  </a>
+        </form>
+    <script type="text/javascript" src="mt.js"></script>
+    </body>
+</html>

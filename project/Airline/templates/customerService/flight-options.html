@@ -1,0 +1,64 @@
+
+{%load static%}
+
+<link rel="stylesheet" href={%static "css/flightoptions.css"%}>
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Cart</title>
+        <link rel="stylesheet" href="newcart.css">
+        <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="header">
+            <p class="logo">Maska</p>
+            <div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div>
+        </div>
+
+        <div class="cart-container">
+            <div id="root"></div>
+            <div class="sidebar">
+                <div class="card.container"><p>My Cart</p></div>
+                <div id="cartItem">Your cart is empty</div>
+                <div class="foot">
+                    <h3>Total</h3>
+                    <h2 id="total">EGP 0.00</h2>
+                </div>
+                <button style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
+        onmouseover="this.style.backgroundColor='green';" 
+        onmouseout="this.style.backgroundColor='#0A2558';">Checkout</button>
+            </div>
+        </div>
+        {%for f in Flights%}
+    
+        <div class="root">
+            <div class="flight">
+                <div class="flight-preview">
+                    <h6>Flight</h6>
+                    <h2>{{f.origen}} <i class="fas fa-plane airplane-icon"></i>{{f.destination}}</h2>
+                </div>
+                                      
+                <div class="flight-info">
+                    <h6>Flight ID: {{f.id}}</h6>
+                    <h2>Flight Details</h2>
+                    <ul>
+                        <li>Flight Duration: {{f.duration}}HRS</li>
+                        <li>BordingTime: {{f.BordingTime}}</li>
+                        <li>Landing Time: {{f.LandingTime}}</li>
+                        <li>Traviling Date: {{f.travile_time}}</li>
+                    </ul>
+                    <button class="btn">Book flight</button>
+                    <p class="price-text">Price: {{f.Price}} EGP </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h1 class="ops" > Oooops!  The is no Flights on this date </h1>
+            {%endfor%} 
+
+        
+           </body>
+</html>
+
+

@@ -15,6 +15,7 @@ def SignupPage(request):
         pass1 = request.POST.get('password')
         pass2 = request.POST.get('confirm_password')
 
+        #backend validations
         if not fname or not lname or not email or not pass1 or not pass2:
             messages.error(request, 'All fields are required.')
             return render(request, 'registeration.html')
@@ -40,10 +41,10 @@ def LoginPage(request):
     if request.method == "POST":
         email = request.POST.get('emaill')
         pass1 = request.POST.get('passwordd')
-        print("Email:", email)  # Print email for debugging
-        print("Password:", pass1)  # Print password for debugging
+        print("Email:", email) 
+        print("Password:", pass1)  
         user = authenticate(request, username=email, password=pass1)
-        print("User:", user)  # Print user object for debugging
+        print("User:", user)  
         if user is not None:
            login(request, user)
            messages.success(request, 'You have been logged in.')

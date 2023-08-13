@@ -166,8 +166,7 @@
           var newimg = imagename.replace(/^.*\\/, "");
           document.getElementById("display-image").innerHTML = newimg;
         }
-
-         var a = document.getElementById("loginBtn");
+ var a = document.getElementById("loginBtn");
 var b = document.getElementById("registerBtn");
 var x = document.getElementById("login");
 var y = document.getElementById("register");
@@ -200,7 +199,7 @@ const requirements = [
 ];
 
 const requirementList = document.querySelectorAll(".requirement-list li");
-const passwordInput = document.getElementById("password_input"); // Add this line
+const passwordInput = document.getElementById("password_input"); 
 
 passwordInput.addEventListener("input", (event) => {
   const passwordValue = event.target.value;
@@ -254,7 +253,7 @@ function validateForm() {
       return false;
   }
 
-  // Clear any previous error messages
+
   clearError();
   return true;
 }

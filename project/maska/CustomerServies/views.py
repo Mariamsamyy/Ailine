@@ -13,6 +13,7 @@ def options(request):
       toData = request.POST.get("To")
       TravilingDate=request.POST.get("date")
       flightFound = Flight.objects.all().filter(origen=fromData, destination=toData,travile_time=TravilingDate)
+      
       print(fromData,toData)
     return render(request,'CustomerServies/CustomerServies.html',{'Flights':flightFound})
 

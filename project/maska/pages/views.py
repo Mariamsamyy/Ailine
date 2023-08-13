@@ -37,14 +37,6 @@ def rating_display(request):
     ratings = Rating.objects.all()
     return render(request, 'pages/rating_display.html', {'ratings': ratings})
 
-def canceled_reservations(request):
-    canceled_count = Reservation.objects.filter(canceled=True).count()
-    return render(request, 'pages/canceled_reservations.html', {'canceled_count': canceled_count})
-
-def edited_reservations(request):
-    edited_count = Reservation.objects.filter(edited=True).count()
-    return render(request, 'pages/edited_reservations.html', {'edited_count': edited_count})
-
 def trial(request):
     # to get the counts for edited and canceled reservations 
     canceled_count = Reservation.objects.filter(canceled=True).count()
@@ -70,6 +62,3 @@ def most_ordered_flight(request):
     most_ordered_flight = FlightOrder.objects.values('flight_number').annotate(count=Count('flight_number')).order_by('-count').first()
     return render(request, 'pages/most_ordered_flight.html', {'most_ordered_flight': most_ordered_flight})
 
-
-def flights_cart(request):
-    return render(request, 'pages/flights-cart.html')

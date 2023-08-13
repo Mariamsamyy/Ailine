@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Checkout</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    {% comment %} <link rel="stylesheet" href="stylesheet.css"> {% endcomment %}
 
     <style>
       .row {
@@ -169,10 +169,14 @@
                 </div>
       
               </div>
-              <input type="submit" value="Confirm payment" class="btn">
+              <button  onclick=window.location.href="{% url 'Rating'%}"  style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
+              onmouseover="this.style.backgroundColor='green';" 
+              onmouseout="this.style.backgroundColor='#0A2558';">Pay Now</button>
+              <a href="{% url 'submit_rating'%}" style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
+              onmouseover="this.style.backgroundColor='green';" 
+              onmouseout="this.style.backgroundColor='#0A2558';"> go to rating </a>
             </form>
           </div>
         </div>
-      
 </body>
 </html>

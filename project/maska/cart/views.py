@@ -5,3 +5,8 @@ def flights_cart(request):
 def checkout (request):
     return render(request,"pages/checkout-form.html")
     
+
+    
+def Rating (request):
+    return render(request,"pages/rating_submission.html")
+    

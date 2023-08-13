@@ -1,4 +1,5 @@
 {%load static%}
+
 <link rel="stylesheet" href={%static "CustomerServies.css"%}>
 <!DOCTYPE html>
 
@@ -8,13 +9,14 @@
         <title>Cart</title>
         <link rel="stylesheet" href="newcart.css">
         <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+        <script src = "CustomerServies.js" > </script>
     </head>
     <body>
         <div class="header">
             <p class="logo">Maska</p>
             <div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div>
         </div>
-
+        <script src="CustomerServies.js"></script>
         <div class="cart-container">
             <div id="root"></div>
             <div class="sidebar">
@@ -22,11 +24,11 @@
                 <div id="cartItem">Your cart is empty</div>
                 <div class="foot">
                     <h3>Total</h3>
-                    <h2 id="total">EGP 0.00</h2>
+                    <h2  id="total">EGP 0.00</h2>
                 </div>
-                <button style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
-        onmouseover="this.style.backgroundColor='green';" 
-        onmouseout="this.style.backgroundColor='#0A2558';">Checkout</button>
+                <button  onclick=window.location.href="{% url 'checkout'%}"  style="background-color: #0A2558; color: white; padding: 10px 20px; border: none; border-radius: 5px; height:50px"
+                onmouseover="this.style.backgroundColor='green';" 
+                onmouseout="this.style.backgroundColor='#0A2558';">Checkout</button>
             </div>
         </div>
         {%for f in Flights%}
@@ -47,8 +49,10 @@
                         <li>Landing Time: {{f.LandingTime}}</li>
                         <li>Traviling Date: {{f.travile_time}}</li>
                     </ul>
-                    <button class="btn">Book flight</button>
                     <p class="price-text">Price: {{f.Price}} EGP </p>
+                    <button onclick=addToCart(f.id,f.Price) class="btn" onmouseover="this.style.backgroundColor='green';" 
+                    onmouseout="this.style.backgroundColor='#0A2558';">Book flight</button>
+                    
                 </div>
             </div>
         </div>
